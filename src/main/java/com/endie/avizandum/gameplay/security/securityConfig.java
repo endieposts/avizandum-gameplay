@@ -1,4 +1,4 @@
-package security;
+package com.endie.avizandum.gameplay.security;
 
 import org.keycloak.adapters.springboot.KeycloakSpringBootConfigResolver;
 import org.keycloak.adapters.springsecurity.KeycloakSecurityComponents;
@@ -44,7 +44,7 @@ class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         super.configure(http);
         http.authorizeRequests()
-                .antMatchers("/verified*")
+                .antMatchers("/player/*")
                 .hasAnyRole("game-admin", "player")
                 .anyRequest()
                 .permitAll();
