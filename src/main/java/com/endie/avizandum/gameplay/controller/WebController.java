@@ -1,5 +1,6 @@
 package com.endie.avizandum.gameplay.controller;
 
+import lombok.val;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import io.micrometer.core.instrument.Metrics;
 @Controller
 public class WebController {
 
+    private Counter counter;
 
     @GetMapping(path = "/")
     public String index() {
@@ -25,7 +27,7 @@ public class WebController {
     @GetMapping(path = "/countme")
     public String countMe(HttpServletRequest request) throws ServletException {
         String user = "test"; // request.getRemoteUser();
-        increaseCount(user);
+        increaseCount(user, "counted");
         return "welcome";
     }
 
@@ -36,8 +38,9 @@ public class WebController {
         return "welcome";
     }
 
-    private void increaseCount(String user) {
-        Counter counter = Metrics.counter("request.countMe", "User", user);
+    private void increaseCount(String user, String state) {
+        counter = Metrics.counter("request.countMe", "User", user, "State", state);
         counter.increment();
+
     }
 }
