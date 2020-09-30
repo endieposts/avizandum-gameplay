@@ -12,6 +12,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findByLastName(String lastName);
 
     User findOneById(@Param("id") Long id);
-    User findOnebyKeycloakUserId(@Param("keycloakUserId") String keycloakUserId);
+    User findOneByKeycloakUserId(@Param("keycloakUserId") String keycloakUserId);
 
 }
