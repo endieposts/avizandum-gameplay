@@ -44,8 +44,8 @@ class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         super.configure(http);
         http.authorizeRequests()
-                .antMatchers("/player/*")
-                .hasAnyRole("game-admin", "player")
+                .antMatchers("/player/*", "/playerhome")
+                .hasRole("player")
                 .anyRequest()
                 .permitAll();
     }
