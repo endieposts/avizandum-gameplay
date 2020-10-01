@@ -1,6 +1,5 @@
 package com.endie.avizandum.gameplay.model;
 
-import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
