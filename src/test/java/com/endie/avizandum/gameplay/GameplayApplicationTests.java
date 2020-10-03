@@ -9,7 +9,7 @@ import org.springframework.test.context.ActiveProfiles;
 class GameplayApplicationTests {
 
     @Test
-    void contextLoads() {
+    public void contextLoads() {
     }
 
 }
