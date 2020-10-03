@@ -19,9 +19,22 @@ public class UserRepositoryTest {
     UserRepository userRepository;
 
     @Test
-    public void should_find_no_tutorials_if_repository_is_empty() {
-        Iterable<User> tutorials = userRepository.findAll();
+    public void should_find_no_users_if_repository_is_empty() {
+        Iterable<User> users = userRepository.findAll();
 
-        assertThat(tutorials).isEmpty();
+        assertThat(users).isEmpty();
+    }
+
+    @Test
+    public void should_store_a_user() {
+        User user = new User();
+        user.setFirstName("Firstname");
+        user.setLastName("Lastname");
+        user.setKeycloakUserId("ABC123");
+        userRepository.save(user);
+
+        assertThat(user).hasFieldOrPropertyWithValue("keycloakUserId", "ABC123");
+        assertThat(user).hasFieldOrPropertyWithValue("firstName", "Firstname");
+        assertThat(user).hasFieldOrPropertyWithValue("lastName", "Lastname");
     }
 }

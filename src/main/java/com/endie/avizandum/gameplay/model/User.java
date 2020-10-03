@@ -14,6 +14,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    private String keycloakUserId;
+    private String firstName;
+    private String lastName;
+
     public String getKeycloakUserId() {
         return keycloakUserId;
     }
@@ -37,9 +41,5 @@ public class User {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
-    private String keycloakUserId;
-    private String firstName;
-    private String lastName;
 
 }
