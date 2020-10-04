@@ -18,23 +18,10 @@ public class WebController {
         return "welcome";
     }
 
-    @GetMapping("/test")
-    public @ResponseBody
-    String testResponse() {
-        return "Hello, World";
-    }
-
     @GetMapping(path = "/playerhome")
     public String playerhome(HttpServletRequest request) throws ServletException {
 
         return "player/playerhome";
-    }
-
-    @GetMapping(path = "/countme")
-    public String countMe(HttpServletRequest request) throws ServletException {
-        String user = "test"; // request.getRemoteUser();
-        increaseCount(user, "counted");
-        return "welcome";
     }
 
     @GetMapping(path = "/logout")
@@ -42,11 +29,5 @@ public class WebController {
         String user = request.getRemoteUser();
         request.logout();
         return "welcome";
-    }
-
-    private void increaseCount(String user, String state) {
-        counter = Metrics.counter("request.countMe", "User", user, "State", state);
-        counter.increment();
-
     }
 }

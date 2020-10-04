@@ -49,15 +49,27 @@ public class WebControllerTest {
     }
 
     @Test
-    @WithMockUser(username = "admin", roles = {"player", "admin"})
-    public void greetingShouldReturnDefaultMessage() throws Exception {
-        this.mockMvc.perform(get("http://localhost:8080/")).andDo(print()).andExpect(status().isOk()).andExpect(MockMvcResultMatchers.content().string(containsString("Hello")));
+    @WithMockUser(username = "testplayer", roles = {"player"})
+    public void playerHomeShouldLoadForPlayer() throws Exception {
+        this.mockMvc.perform(get("http://localhost:8080/playerhome")).andDo(print()).andExpect(status().isOk()).andExpect(MockMvcResultMatchers.content().string(containsString("Player home page")));
     }
 
     @Test
-    @WithMockUser(username = "admin", roles = {"player", "admin"})
-    public void shouldReturnDefaultMessage() throws Exception {
-        this.mockMvc.perform(get("/test")).andDo(print()).andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.content().string(containsString("Hello, World")));
+    public void playerHomeShouldNotLoadForNonPlayer() throws Exception {
+        this.mockMvc.perform(get("http://localhost:8080/playerhome")).andDo(print()).andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    @WithMockUser(username = "testplayer", roles = {"player"})
+    public void welcomePageShouldReturnDefaultMessage() throws Exception {
+        this.mockMvc.perform(get("/")).andDo(print()).andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.content().string(containsString("Welcome")));
+    }
+
+    @Test
+    @WithMockUser(username = "testplayer", roles = {"player"})
+    public void logoutPageShouldReturnToWelcomePage() throws Exception {
+        this.mockMvc.perform(get("/logout")).andDo(print()).andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.content().string(containsString("Are you sure you want to log out?")));
     }
 }
