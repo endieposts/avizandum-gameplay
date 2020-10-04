@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.Metrics;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class WebController {
@@ -15,6 +16,12 @@ public class WebController {
     @GetMapping(path = "/")
     public String index() {
         return "welcome";
+    }
+
+    @GetMapping("/test")
+    public @ResponseBody
+    String testResponse() {
+        return "Hello, World";
     }
 
     @GetMapping(path = "/playerhome")
