@@ -1,12 +1,12 @@
 package com.endie.avizandum.gameplay.repository.world;
 
-import com.endie.avizandum.gameplay.model.world.Demesne;
+import com.endie.avizandum.gameplay.model.world.Domain;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface  DemesneRepository  extends JpaRepository<Demesne, Long> {
+public interface DomainRepository  extends JpaRepository<Domain, Long> {
 
-    Demesne findOneById(@Param("id") Long id);
+    Domain findOneByDomainId(@Param("domainId") Long domainId);
 }

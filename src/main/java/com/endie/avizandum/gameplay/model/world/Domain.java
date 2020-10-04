@@ -7,11 +7,25 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "demesnes")
-public class Demesne {
+@Table(name = "domain")
+public class Domain {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long domainId;
+
+    private String name;
+
+    public Long getDomainId() {
+        return domainId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
 }
