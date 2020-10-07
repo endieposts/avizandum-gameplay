@@ -27,4 +27,12 @@ public class DistrictRepositoryTest {
 
         assertThat(districts).isEmpty();
     }
+
+    @Test
+    public void should_store_a_district() {
+        District district = districtRepository.save(new District("Test name", 1L));
+
+        assertThat(district).hasFieldOrPropertyWithValue("name", "Test name");
+        assertThat(district).hasFieldOrPropertyWithValue("terrainId", 1L);
+    }
 }
