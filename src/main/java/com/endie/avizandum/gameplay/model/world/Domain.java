@@ -16,15 +16,24 @@ public class Domain {
 
     private String name;
 
+    public Domain() {
+    }
+
+    public Domain( String name) {
+        setName(name);
+    }
+
     public Long getDomainId() {
         return domainId;
     }
 
     public String getName() {
+
         return name;
     }
 
     public void setName(String name) {
+
         this.name = name;
     }
 

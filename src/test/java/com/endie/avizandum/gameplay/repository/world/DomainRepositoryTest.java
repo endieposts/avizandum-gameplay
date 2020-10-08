@@ -1,5 +1,6 @@
 package com.endie.avizandum.gameplay.repository.world;
 
+import com.endie.avizandum.gameplay.model.world.District;
 import com.endie.avizandum.gameplay.model.world.Domain;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +25,12 @@ public class DomainRepositoryTest {
         Iterable<Domain> domains = domainRepository.findAll();
 
         assertThat(domains).isEmpty();
+    }
+
+    @Test
+    public void should_store_a_domain() {
+        Domain domain = domainRepository.save(new Domain("Test name"));
+
+        assertThat(domain).hasFieldOrPropertyWithValue("name", "Test name");
     }
 }

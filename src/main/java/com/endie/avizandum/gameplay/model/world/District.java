@@ -18,8 +18,8 @@ public class District {
     }
 
     public District( String name, Long terrainId) {
-        this.terrainId = terrainId;
-        this.name = name;
+        setTerrainId(terrainId);
+        setName(name);
     }
 
     public Long getTerrainId() {
