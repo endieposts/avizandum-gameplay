@@ -20,7 +20,7 @@ public class Domain {
     }
 
     public Domain( String name) {
-        setName(name);
+        this.name = name;
     }
 
     public Long getDomainId() {
