@@ -6,7 +6,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface DomainRepository  extends JpaRepository<Domain, Long> {
+public interface DomainRepository extends JpaRepository<Domain, Long> {
 
     Domain findOneByDomainId(@Param("domainId") Long domainId);
 }
