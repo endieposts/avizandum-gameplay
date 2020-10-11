@@ -12,6 +12,14 @@ public class Terrain {
 
     private String name;
 
+    public Terrain() {
+    }
+
+    public Terrain( String name ) {
+        this.name = name;
+    }
+
+
     public Long getTerrainId() {
         return terrainId;
     }

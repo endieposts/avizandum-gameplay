@@ -1,5 +1,6 @@
 package com.endie.avizandum.gameplay.repository.world;
 
+import com.endie.avizandum.gameplay.model.world.District;
 import com.endie.avizandum.gameplay.model.world.Terrain;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +25,12 @@ public class TerrainRepositoryTest {
         Iterable<Terrain> terrains = terrainRepository.findAll();
 
         assertThat(terrains).isEmpty();
+    }
+
+    @Test
+    public void should_store_a_terrain() {
+        Terrain terrain = terrainRepository.save(new Terrain("Test terrain name"));
+
+        assertThat(terrain).hasFieldOrPropertyWithValue("name", "Test terrain name");
     }
 }
