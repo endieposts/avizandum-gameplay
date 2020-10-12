@@ -51,4 +51,18 @@ public class DistrictRepositoryTest {
 
         assertThat(districts).hasSize(3).contains(district1, district2, district3);
     }
+
+    @Test
+    public void should_find_district_by_id() {
+        District district1 = new District("A Test 1 name", 1L);
+        entityManager.persist(district1);
+
+        District district2 = new District("B Test 2 name", 2L);
+        entityManager.persist(district2);
+
+        District foundDistrict = districtRepository.findById(district2.getTerrainId()).get();
+
+        assertThat(foundDistrict).isEqualTo(district2);
+
+    }
 }
