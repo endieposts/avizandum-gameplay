@@ -35,4 +35,20 @@ public class DistrictRepositoryTest {
         assertThat(district).hasFieldOrPropertyWithValue("name", "Test name");
         assertThat(district).hasFieldOrPropertyWithValue("terrainId", 1L);
     }
+
+    @Test
+    public void should_find_all_districts() {
+        District district1 = new District("A Test 1 name", 1L);
+        entityManager.persist(district1);
+
+        District district2 = new District("B Test 2 name", 2L);
+        entityManager.persist(district2);
+
+        District district3 = new District("C Test 3 name", 3L);
+        entityManager.persist(district3);
+
+        Iterable<District> districts = districtRepository.findAll();
+
+        assertThat(districts).hasSize(3).contains(district1, district2, district3);
+    }
 }
