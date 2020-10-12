@@ -22,6 +22,10 @@ public class District {
         this.name = name;
     }
 
+    public Long getDistrictId() {
+        return districtId;
+    }
+
     public Long getTerrainId() {
         return terrainId;
     }

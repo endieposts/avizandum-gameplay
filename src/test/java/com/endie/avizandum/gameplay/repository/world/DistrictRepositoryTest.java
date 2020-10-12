@@ -54,13 +54,14 @@ public class DistrictRepositoryTest {
 
     @Test
     public void should_find_district_by_id() {
-        District district1 = new District("A Test 1 name", 1L);
+
+        District district1 = new District("D Test 1 name", 1L);
         entityManager.persist(district1);
 
-        District district2 = new District("B Test 2 name", 2L);
+        District district2 = new District("E Test 2 name", 2L);
         entityManager.persist(district2);
 
-        District foundDistrict = districtRepository.findById(district2.getTerrainId()).get();
+        District foundDistrict = districtRepository.findById(district2.getDistrictId()).get();
 
         assertThat(foundDistrict).isEqualTo(district2);
 
