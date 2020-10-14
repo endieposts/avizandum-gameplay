@@ -1,6 +1,7 @@
 package com.endie.avizandum.gameplay.repository.world;
 
 import com.endie.avizandum.gameplay.model.world.District;
+import com.endie.avizandum.gameplay.model.world.Domain;
 import com.endie.avizandum.gameplay.model.world.Terrain;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,5 +33,36 @@ public class TerrainRepositoryTest {
         Terrain terrain = terrainRepository.save(new Terrain("Test terrain name"));
 
         assertThat(terrain).hasFieldOrPropertyWithValue("name", "Test terrain name");
+    }
+
+    @Test
+    public void should_find_all_domains() {
+        Terrain terrain1 = new Terrain("A Test 1 name");
+        entityManager.persist(terrain1);
+
+        Terrain terrain2 = new Terrain("B Test 2 name");
+        entityManager.persist(terrain2);
+
+        Terrain terrain3 = new Terrain("C Test 3 name");
+        entityManager.persist(terrain3);
+
+        Iterable<Terrain> domains = terrainRepository.findAll();
+
+        assertThat(domains).hasSize(3).contains(terrain1, terrain2, terrain3);
+    }
+
+    @Test
+    public void should_find_district_by_id() {
+
+        Terrain terrain1 = new Terrain("D Test 1 name");
+        entityManager.persist(terrain1);
+
+        Terrain terrain2 = new Terrain("E Test 2 name");
+        entityManager.persist(terrain2);
+
+        Terrain foundDomain = terrainRepository.findById(terrain2.getTerrainId()).get();
+
+        assertThat(foundDomain).isEqualTo(terrain2);
+
     }
 }
