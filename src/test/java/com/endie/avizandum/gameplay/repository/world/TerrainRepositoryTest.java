@@ -36,7 +36,7 @@ public class TerrainRepositoryTest {
     }
 
     @Test
-    public void should_find_all_domains() {
+    public void should_find_all_terrains() {
         Terrain terrain1 = new Terrain("A Test 1 name");
         entityManager.persist(terrain1);
 
@@ -52,7 +52,7 @@ public class TerrainRepositoryTest {
     }
 
     @Test
-    public void should_find_district_by_id() {
+    public void should_find_terrain_by_id() {
 
         Terrain terrain1 = new Terrain("D Test 1 name");
         entityManager.persist(terrain1);
@@ -63,6 +63,27 @@ public class TerrainRepositoryTest {
         Terrain foundDomain = terrainRepository.findById(terrain2.getTerrainId()).get();
 
         assertThat(foundDomain).isEqualTo(terrain2);
+
+    }
+
+    @Test
+    public void should_update_terrain_by_id() {
+        Terrain terrain1 = new Terrain("F Terrain 1 name");
+        entityManager.persist(terrain1);
+
+        Terrain terrain2 = new Terrain("G Terrain 2 name");
+        entityManager.persist(terrain2);
+
+        Terrain updatedTerrain = new Terrain("H updated Terrain 2 name");
+
+        Terrain terrain = terrainRepository.findById(terrain2.getTerrainId()).get();
+        terrain.setName(updatedTerrain.getName());
+        terrainRepository.save(terrain);
+
+        Terrain checkTut = terrainRepository.findById(terrain2.getTerrainId()).get();
+
+        assertThat(checkTut.getTerrainId()).isEqualTo(terrain2.getTerrainId());
+        assertThat(checkTut.getName()).isEqualTo(updatedTerrain.getName());
 
     }
 }
