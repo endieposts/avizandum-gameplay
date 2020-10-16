@@ -2,6 +2,7 @@ package com.endie.avizandum.gameplay.repository.world;
 
 import com.endie.avizandum.gameplay.model.User;
 import com.endie.avizandum.gameplay.model.world.District;
+import com.endie.avizandum.gameplay.model.world.Terrain;
 import com.endie.avizandum.gameplay.repository.world.DistrictRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,6 +65,29 @@ public class DistrictRepositoryTest {
         District foundDistrict = districtRepository.findById(district2.getDistrictId()).get();
 
         assertThat(foundDistrict).isEqualTo(district2);
+
+    }
+
+    @Test
+    public void should_update_district_by_id() {
+        District district1 = new District("F District 1 name", 1L);
+        entityManager.persist(district1);
+
+        District district2 = new District("G District 2 name", 2L);
+        entityManager.persist(district2);
+
+        District updatedDistrict = new District("H updated District 2 name", 3L);
+
+        District district = districtRepository.findById(district2.getDistrictId()).get();
+        district.setName(updatedDistrict.getName());
+        district.setTerrainId(updatedDistrict.getTerrainId());
+        districtRepository.save(district);
+
+        District checkDistrict = districtRepository.findById(district2.getDistrictId()).get();
+
+        assertThat(checkDistrict.getDistrictId()).isEqualTo(district2.getDistrictId());
+        assertThat(checkDistrict.getName()).isEqualTo(updatedDistrict.getName());
+        assertThat(checkDistrict.getTerrainId()).isEqualTo(updatedDistrict.getTerrainId());
 
     }
 }

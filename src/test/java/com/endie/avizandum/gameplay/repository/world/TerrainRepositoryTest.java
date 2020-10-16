@@ -80,10 +80,10 @@ public class TerrainRepositoryTest {
         terrain.setName(updatedTerrain.getName());
         terrainRepository.save(terrain);
 
-        Terrain checkTut = terrainRepository.findById(terrain2.getTerrainId()).get();
+        Terrain checkTerrain = terrainRepository.findById(terrain2.getTerrainId()).get();
 
-        assertThat(checkTut.getTerrainId()).isEqualTo(terrain2.getTerrainId());
-        assertThat(checkTut.getName()).isEqualTo(updatedTerrain.getName());
+        assertThat(checkTerrain.getTerrainId()).isEqualTo(terrain2.getTerrainId());
+        assertThat(checkTerrain.getName()).isEqualTo(updatedTerrain.getName());
 
     }
 }
