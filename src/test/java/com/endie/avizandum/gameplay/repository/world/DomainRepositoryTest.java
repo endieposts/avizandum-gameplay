@@ -1,6 +1,5 @@
 package com.endie.avizandum.gameplay.repository.world;
 
-import com.endie.avizandum.gameplay.model.world.District;
 import com.endie.avizandum.gameplay.model.world.Domain;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +61,27 @@ public class DomainRepositoryTest {
         Domain foundDomain = domainRepository.findById(domain2.getDomainId()).get();
 
         assertThat(foundDomain).isEqualTo(domain2);
+
+    }
+
+    @Test
+    public void should_update_terrain_by_id() {
+        Domain domain1 = new Domain("F Domain 1 name");
+        entityManager.persist(domain1);
+
+        Domain domain2 = new Domain("G Domain 2 name");
+        entityManager.persist(domain2);
+
+        Domain updatedDomain = new Domain("H updated Domain 2 name");
+
+        Domain domain = domainRepository.findById(domain2.getDomainId()).get();
+        domain.setName(updatedDomain.getName());
+        domainRepository.save(domain);
+
+        Domain checkTerrain = domainRepository.findById(domain2.getDomainId()).get();
+
+        assertThat(checkTerrain.getDomainId()).isEqualTo(domain2.getDomainId());
+        assertThat(checkTerrain.getName()).isEqualTo(updatedDomain.getName());
 
     }
 }
