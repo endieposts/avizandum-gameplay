@@ -87,4 +87,14 @@ public class DistrictRepositoryTest {
         assertThat(checkDistrict.getTerrainId()).isEqualTo(updatedDistrict.getTerrainId());
 
     }
+
+    @Test
+    public void should_delete_all_districts() {
+        entityManager.persist(new District("District #1", 1L));
+        entityManager.persist(new District("District #2", 2L));
+
+        districtRepository.deleteAll();
+
+        assertThat(districtRepository.findAll()).isEmpty();
+    }
 }
