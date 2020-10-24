@@ -1,5 +1,6 @@
 package com.endie.avizandum.gameplay.repository.world;
 
+import com.endie.avizandum.gameplay.model.world.Domain;
 import com.endie.avizandum.gameplay.model.world.Terrain;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,5 +84,15 @@ public class TerrainRepositoryTest {
         assertThat(checkTerrain.getTerrainId()).isEqualTo(terrain2.getTerrainId());
         assertThat(checkTerrain.getName()).isEqualTo(updatedTerrain.getName());
 
+    }
+
+    @Test
+    public void should_delete_all_terrains() {
+        entityManager.persist(new Terrain("Terrain #1"));
+        entityManager.persist(new Terrain("Terrain #2"));
+
+        terrainRepository.deleteAll();
+
+        assertThat(terrainRepository.findAll()).isEmpty();
     }
 }
