@@ -1,6 +1,5 @@
 package com.endie.avizandum.gameplay.repository.world;
 
-import com.endie.avizandum.gameplay.model.world.District;
 import com.endie.avizandum.gameplay.model.world.Domain;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
